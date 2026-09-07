@@ -9,14 +9,16 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:   #0A0A0A;
-      --graphite:#2E2E2E;
-      --parchment: #E8DFD0;
-      --rose:    #C4837A;
-      --rose-dim:#8A5A56;
-      --white:   #F5F2EE;
-      --serif:   'Playfair Display', Georgia, serif;
-      --sans:    'DM Sans', system-ui, sans-serif;
+      --black:      #0A0A0A;
+      --graphite:   #2E2E2E;
+      --graphite2:  #222222;
+      --parchment:  #E8DFD0;
+      --rose:       #C4837A;
+      --rose-dim:   #8A5A56;
+      --white:      #F5F2EE;
+      --serif:      'Playfair Display', Georgia, serif;
+      --sans:       'DM Sans', system-ui, sans-serif;
+      --max:        1200px;
     }
 
     html { scroll-behavior: smooth; }
@@ -34,14 +36,20 @@
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 100;
+      z-index: 200;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232,223,208,0.08);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 1.4rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.4rem 3rem;
-      background: rgba(10,10,10,0.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(232,223,208,0.08);
     }
 
     .nav-logo {
@@ -51,6 +59,7 @@
       letter-spacing: 0.04em;
       color: var(--parchment);
       text-decoration: none;
+      white-space: nowrap;
     }
 
     .nav-links {
@@ -60,13 +69,14 @@
     }
 
     .nav-links a {
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       font-weight: 400;
       letter-spacing: 0.06em;
-      color: rgba(232,223,208,0.65);
+      color: rgba(232,223,208,0.6);
       text-decoration: none;
       text-transform: lowercase;
       transition: color 0.2s;
+      white-space: nowrap;
     }
 
     .nav-links a:hover { color: var(--rose); }
@@ -91,7 +101,6 @@
       pointer-events: none;
     }
 
-    /* Decorative needle SVG line */
     .hero-line {
       width: 1px;
       height: 120px;
@@ -201,8 +210,15 @@
       .marquee-track { animation: none; }
     }
 
-    /* ── SECTIONS shared ─────────────────────── */
-    section { padding: 6rem 3rem; }
+    /* ── SHARED ──────────────────────────────── */
+    .section-wrap {
+      padding: 6rem 3rem;
+    }
+
+    .section-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
 
     .section-label {
       font-size: 0.75rem;
@@ -223,41 +239,50 @@
     h2 em { font-weight: 400; color: var(--rose); }
 
     /* ── ABOUT ───────────────────────────────── */
-    .about {
+    .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1.4fr;
       gap: 6rem;
       align-items: center;
-      max-width: 1100px;
-      margin: 0 auto;
     }
 
-    .about-visual {
-      position: relative;
-    }
-
-    .about-img-mock {
+    /* Dark panel replacing the SVG placeholder */
+    .about-panel {
       width: 100%;
       aspect-ratio: 3/4;
-      background: var(--graphite);
+      background: var(--graphite2);
+      border: 1px solid rgba(232,223,208,0.07);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
       position: relative;
-      overflow: hidden;
     }
 
-    /* Decorative tattoo flash art SVG */
-    .about-img-mock svg {
-      width: 100%;
-      height: 100%;
-      opacity: 0.35;
+    .about-panel-label {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: rgba(232,223,208,0.2);
+      letter-spacing: 0.06em;
     }
 
-    .about-accent {
+    .about-panel-hint {
+      font-size: 0.72rem;
+      color: rgba(232,223,208,0.15);
+      letter-spacing: 0.1em;
+    }
+
+    /* thin rose border accent offset */
+    .about-panel::after {
+      content: '';
       position: absolute;
-      bottom: -1.5rem;
-      right: -1.5rem;
-      width: 60%;
+      bottom: -1.2rem;
+      right: -1.2rem;
+      width: 55%;
       aspect-ratio: 1;
-      border: 1px solid rgba(196,131,122,0.3);
+      border: 1px solid rgba(196,131,122,0.2);
       z-index: -1;
     }
 
@@ -265,7 +290,7 @@
       font-size: 1rem;
       color: rgba(232,223,208,0.7);
       margin-top: 1.5rem;
-      max-width: 50ch;
+      max-width: 52ch;
     }
 
     .about-stats {
@@ -292,13 +317,8 @@
     }
 
     /* ── SERVICES ────────────────────────────── */
-    .services-section {
+    .services-bg {
       background: var(--graphite);
-    }
-
-    .services-inner {
-      max-width: 1100px;
-      margin: 0 auto;
     }
 
     .services-head {
@@ -330,13 +350,6 @@
 
     .service-card:hover { background: #363636; }
 
-    .service-icon {
-      width: 36px;
-      height: 36px;
-      margin-bottom: 1.8rem;
-      opacity: 0.6;
-    }
-
     .service-card h3 {
       font-family: var(--serif);
       font-size: 1.4rem;
@@ -348,12 +361,10 @@
     .service-card p {
       font-size: 0.88rem;
       color: rgba(232,223,208,0.5);
-      line-height: 1.75;
+      line-height: 1.8;
     }
 
     /* ── GALLERY ─────────────────────────────── */
-    .gallery-section { max-width: 1100px; margin: 0 auto; }
-
     .gallery-intro {
       display: flex;
       justify-content: space-between;
@@ -364,14 +375,14 @@
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: auto auto;
       gap: 0.75rem;
     }
 
     .gallery-item {
-      background: var(--graphite);
+      background: var(--graphite2);
       overflow: hidden;
       position: relative;
+      border: 1px solid rgba(232,223,208,0.05);
     }
 
     .gallery-item:first-child {
@@ -379,60 +390,40 @@
       grid-row: span 2;
     }
 
-    .gallery-mock {
+    /* Clean dark tile — no SVG, just background */
+    .gallery-tile {
       width: 100%;
       aspect-ratio: 1;
-      background: linear-gradient(135deg, #2A2A2A 0%, #1A1A1A 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .gallery-item:first-child .gallery-mock {
-      aspect-ratio: 1;
-      height: 100%;
-    }
-
-    .gallery-mock svg {
-      opacity: 0.18;
-    }
-
-    .gallery-item:hover .gallery-mock { filter: brightness(1.15); }
-
-    .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(10,10,10,0.55);
+      background: linear-gradient(145deg, #252525 0%, #181818 100%);
       display: flex;
       align-items: flex-end;
       padding: 1.2rem;
-      opacity: 0;
-      transition: opacity 0.25s;
     }
 
-    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-item:first-child .gallery-tile {
+      aspect-ratio: unset;
+      height: 100%;
+      min-height: 320px;
+    }
 
     .gallery-tag {
       font-size: 0.72rem;
-      color: var(--parchment);
+      color: rgba(232,223,208,0.3);
       letter-spacing: 0.08em;
+      transition: color 0.2s;
     }
+
+    .gallery-item:hover .gallery-tile { filter: brightness(1.2); }
+    .gallery-item:hover .gallery-tag  { color: rgba(232,223,208,0.7); }
 
     /* ── PROCESS ─────────────────────────────── */
-    .process-section {
+    .process-bg {
       background: #0D0D0D;
-      max-width: none;
-    }
-
-    .process-inner {
-      max-width: 1100px;
-      margin: 0 auto;
     }
 
     .process-steps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0;
       margin-top: 4rem;
       border: 1px solid rgba(232,223,208,0.1);
     }
@@ -465,7 +456,7 @@
       line-height: 1.75;
     }
 
-    /* ── BOOKING / CTA ───────────────────────── */
+    /* ── BOOKING CTA ─────────────────────────── */
     .booking-section {
       text-align: center;
       padding: 8rem 2rem;
@@ -477,28 +468,38 @@
       position: absolute;
       inset: 0;
       background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(196,131,122,0.12) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .booking-section h2 {
       font-size: clamp(2.5rem, 5vw, 4rem);
       margin-bottom: 1rem;
+      position: relative;
     }
 
-    .booking-section p {
+    .booking-section > p {
       font-size: 1rem;
       color: rgba(232,223,208,0.5);
       max-width: 42ch;
       margin: 0 auto 2.8rem;
+      position: relative;
     }
+
+    .booking-section > div { position: relative; }
 
     /* ── FOOTER ──────────────────────────────── */
     footer {
       border-top: 1px solid rgba(232,223,208,0.1);
+      background: var(--black);
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
       padding: 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: var(--black);
     }
 
     .footer-logo {
@@ -518,6 +519,7 @@
       color: rgba(232,223,208,0.35);
       text-decoration: none;
       letter-spacing: 0.05em;
+      transition: color 0.2s;
     }
 
     .footer-links a:hover { color: var(--rose); }
@@ -528,40 +530,51 @@
     }
 
     /* ── RESPONSIVE ──────────────────────────── */
-    @media (max-width: 900px) {
-      nav { padding: 1.2rem 1.5rem; }
-      .nav-links { gap: 1.5rem; }
-      section { padding: 4rem 1.5rem; }
+    @media (max-width: 1000px) {
+      .nav-inner { padding: 1.2rem 2rem; }
+      .section-wrap { padding: 5rem 2rem; }
 
-      .about { grid-template-columns: 1fr; gap: 3rem; }
-      .about-accent { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-panel { aspect-ratio: 4/3; }
+      .about-panel::after { display: none; }
 
       .services-head { grid-template-columns: 1fr; gap: 1.5rem; }
-      .services-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
 
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .gallery-item:first-child { grid-column: span 2; }
 
       .process-steps { grid-template-columns: 1fr 1fr; }
-      .process-step { border-bottom: 1px solid rgba(232,223,208,0.1); }
       .process-step:nth-child(2) { border-right: none; }
-      .process-step:nth-child(3) { border-right: 1px solid rgba(232,223,208,0.1); }
-      .process-step:last-child { border-right: none; border-bottom: none; }
-      .process-step:nth-child(3) { border-bottom: none; }
+      .process-step:nth-child(3) { border-right: 1px solid rgba(232,223,208,0.1); border-top: 1px solid rgba(232,223,208,0.1); }
+      .process-step:nth-child(4) { border-right: none; border-top: 1px solid rgba(232,223,208,0.1); }
 
-      footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+      .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 600px) {
+      .nav-inner { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.78rem; }
+
       .hero-title { font-size: 3rem; }
-      .nav-links { display: none; }
+      .section-wrap { padding: 4rem 1.5rem; }
+
+      .services-grid { grid-template-columns: 1fr; }
+
       .gallery-grid { grid-template-columns: 1fr; }
       .gallery-item:first-child { grid-column: span 1; }
+      .gallery-item:first-child .gallery-tile { min-height: 260px; }
+
       .process-steps { grid-template-columns: 1fr; }
       .process-step { border-right: none; border-bottom: 1px solid rgba(232,223,208,0.1); }
+      .process-step:nth-child(3) { border-right: none; border-top: none; }
+      .process-step:nth-child(4) { border-right: none; }
       .process-step:last-child { border-bottom: none; }
+
       .about-stats { flex-direction: column; gap: 1.5rem; }
+      .btn-ghost { margin-left: 0; margin-top: 0.8rem; display: block; text-align: center; }
     }
   </style>
 </head>
@@ -569,13 +582,15 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">Ink In Muse</a>
-    <ul class="nav-links">
-      <li><a href="#about">about</a></li>
-      <li><a href="#services">services</a></li>
-      <li><a href="#gallery">gallery</a></li>
-      <li><a href="#booking">book</a></li>
-    </ul>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Ink In Muse</a>
+      <ul class="nav-links">
+        <li><a href="#about">about</a></li>
+        <li><a href="#services">services</a></li>
+        <li><a href="#gallery">gallery</a></li>
+        <li><a href="#booking">book</a></li>
+      </ul>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -612,55 +627,32 @@
   </div>
 
   <!-- ABOUT -->
-  <section id="about">
-    <div class="about">
-      <div class="about-visual">
-        <div class="about-img-mock">
-          <!-- Decorative flash-art SVG placeholder -->
-          <svg viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="150" cy="140" r="70" stroke="#C4837A" stroke-width="1"/>
-            <circle cx="150" cy="140" r="50" stroke="#C4837A" stroke-width="0.5"/>
-            <line x1="150" y1="60" x2="150" y2="20" stroke="#C4837A" stroke-width="1"/>
-            <line x1="150" y1="220" x2="150" y2="260" stroke="#C4837A" stroke-width="1"/>
-            <line x1="70" y1="140" x2="30" y2="140" stroke="#C4837A" stroke-width="1"/>
-            <line x1="230" y1="140" x2="270" y2="140" stroke="#C4837A" stroke-width="1"/>
-            <path d="M150 80 L160 120 L200 120 L168 144 L180 184 L150 160 L120 184 L132 144 L100 120 L140 120 Z" stroke="#E8DFD0" stroke-width="0.8" fill="none"/>
-            <path d="M80 300 Q150 260 220 300 Q150 340 80 300Z" stroke="#C4837A" stroke-width="1" fill="none"/>
-            <line x1="100" y1="310" x2="200" y2="310" stroke="#C4837A" stroke-width="0.5"/>
-            <circle cx="150" cy="310" r="8" stroke="#E8DFD0" stroke-width="0.8" fill="none"/>
-            <text x="150" y="370" text-anchor="middle" fill="#E8DFD0" font-size="12" font-family="serif" opacity="0.5">INK IN MUSE</text>
-          </svg>
-        </div>
-        <div class="about-accent"></div>
-      </div>
+  <div id="about" class="section-wrap">
+    <div class="section-inner">
+      <div class="about-grid">
 
-      <div class="about-text">
-        <p class="section-label">about the artist</p>
-        <h2>Ink is patience.<br /><em>Cover-ups are craft.</em></h2>
-        <p>Every piece that comes through the door has a story — and sometimes that story needs a new chapter. Whether you're freshening faded lines, reclaiming skin from a tattoo that no longer fits, or starting completely fresh, the work here is intentional, unhurried, and built to last.</p>
-        <p style="margin-top:1rem;">Specialising in touch-ups and cover-up transformations, with a keen eye for matching existing styles or introducing something entirely new.</p>
-
-        <div class="about-stats">
-          <div>
-            <div class="stat-num">8+</div>
-            <div class="stat-label">years tattooing</div>
-          </div>
-          <div>
-            <div class="stat-num">400+</div>
-            <div class="stat-label">cover-ups completed</div>
-          </div>
-          <div>
-            <div class="stat-num">100%</div>
-            <div class="stat-label">custom designs</div>
-          </div>
+        <!-- Clean dark photo placeholder — drop an <img> here when ready -->
+        <div class="about-panel">
+          <span class="about-panel-label">your photo here</span>
+          <span class="about-panel-hint">replace with an artist or studio image</span>
         </div>
+
+        <div class="about-text">
+          <p class="section-label">about the artist</p>
+          <h2>Ink is patience.<br /><em>Cover-ups are craft.</em></h2>
+          <p>Every piece that comes through the door has a story — and sometimes that story needs a new chapter. Whether you're freshening faded lines, reclaiming skin from a tattoo that no longer fits, or starting completely fresh, the work here is intentional, unhurried, and built to last.</p>
+          <p style="margin-top:1rem;">Specialising in touch-ups and cover-up transformations, with a keen eye for matching existing styles or introducing something entirely new.</p>
+
+
+        </div>
+
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- SERVICES -->
-  <section id="services" class="services-section">
-    <div class="services-inner">
+  <div id="services" class="section-wrap services-bg">
+    <div class="section-inner">
       <div class="services-head">
         <div>
           <p class="section-label">what we do</p>
@@ -671,38 +663,24 @@
 
       <div class="services-grid">
         <div class="service-card">
-          <svg class="service-icon" viewBox="0 0 36 36" fill="none">
-            <circle cx="18" cy="18" r="12" stroke="#C4837A" stroke-width="1.2"/>
-            <path d="M18 10v16M10 18h16" stroke="#C4837A" stroke-width="1.2"/>
-          </svg>
           <h3>Touch-Ups</h3>
           <p>Faded colour, softened lines, and old ink that's lost its punch. We restore existing tattoos to their original intention — or better.</p>
         </div>
-
         <div class="service-card">
-          <svg class="service-icon" viewBox="0 0 36 36" fill="none">
-            <rect x="6" y="6" width="24" height="24" stroke="#C4837A" stroke-width="1.2"/>
-            <path d="M6 6l24 24M30 6L6 30" stroke="#C4837A" stroke-width="0.6" stroke-dasharray="3 3"/>
-          </svg>
           <h3>Cover-Ups</h3>
           <p>Turning what was into something new. Whether it's a name, an old design, or a regret — we build a piece that hides the past while standing beautifully on its own.</p>
         </div>
-
         <div class="service-card">
-          <svg class="service-icon" viewBox="0 0 36 36" fill="none">
-            <path d="M8 28 Q18 8 28 28" stroke="#C4837A" stroke-width="1.2" fill="none"/>
-            <circle cx="18" cy="16" r="3" stroke="#C4837A" stroke-width="1.2"/>
-          </svg>
           <h3>Custom Design</h3>
           <p>Collaborative from the first sketch. We work through your reference, your skin tone, and your placement to design something made only for you.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- GALLERY -->
-  <section id="gallery">
-    <div class="gallery-section">
+  <div id="gallery" class="section-wrap">
+    <div class="section-inner">
       <div class="gallery-intro">
         <div>
           <p class="section-label">portfolio</p>
@@ -712,62 +690,38 @@
       </div>
 
       <div class="gallery-grid">
-        <!-- Feature slot -->
         <div class="gallery-item">
-          <div class="gallery-mock" style="height:100%; aspect-ratio:unset;">
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-              <path d="M40 10 L46 30 L68 30 L51 43 L57 63 L40 50 L23 63 L29 43 L12 30 L34 30 Z" stroke="#E8DFD0" stroke-width="1"/>
-            </svg>
+          <div class="gallery-tile">
+            <span class="gallery-tag">cover-up transformation</span>
           </div>
-          <div class="gallery-overlay"><span class="gallery-tag">cover-up transformation</span></div>
         </div>
-
         <div class="gallery-item">
-          <div class="gallery-mock">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
-              <circle cx="25" cy="25" r="18" stroke="#C4837A" stroke-width="0.8"/>
-              <circle cx="25" cy="25" r="10" stroke="#C4837A" stroke-width="0.5"/>
-            </svg>
+          <div class="gallery-tile">
+            <span class="gallery-tag">touch-up · colour restore</span>
           </div>
-          <div class="gallery-overlay"><span class="gallery-tag">touch-up · colour restore</span></div>
         </div>
-
         <div class="gallery-item">
-          <div class="gallery-mock">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
-              <path d="M10 40 Q25 10 40 40" stroke="#E8DFD0" stroke-width="0.8" fill="none"/>
-              <path d="M16 40 Q25 18 34 40" stroke="#C4837A" stroke-width="0.5" fill="none"/>
-            </svg>
+          <div class="gallery-tile">
+            <span class="gallery-tag">blackwork · custom</span>
           </div>
-          <div class="gallery-overlay"><span class="gallery-tag">blackwork · custom</span></div>
         </div>
-
         <div class="gallery-item">
-          <div class="gallery-mock">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
-              <rect x="12" y="12" width="26" height="26" stroke="#C4837A" stroke-width="0.8" rx="2"/>
-              <line x1="12" y1="25" x2="38" y2="25" stroke="#E8DFD0" stroke-width="0.4"/>
-            </svg>
+          <div class="gallery-tile">
+            <span class="gallery-tag">geometric · fine line</span>
           </div>
-          <div class="gallery-overlay"><span class="gallery-tag">geometric · fine line</span></div>
         </div>
-
         <div class="gallery-item">
-          <div class="gallery-mock">
-            <svg width="50" height="50" viewBox="0 0 50 50" fill="none">
-              <path d="M25 8 C34 8 42 16 42 25 C42 34 34 42 25 42 C16 42 8 34 8 25" stroke="#E8DFD0" stroke-width="0.8" fill="none"/>
-              <path d="M8 25 C8 18 14 12 20 10" stroke="#C4837A" stroke-width="0.6" fill="none" stroke-dasharray="2 2"/>
-            </svg>
+          <div class="gallery-tile">
+            <span class="gallery-tag">scar coverage</span>
           </div>
-          <div class="gallery-overlay"><span class="gallery-tag">scar coverage</span></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- PROCESS -->
-  <section id="process" class="process-section">
-    <div class="process-inner">
+  <div id="process" class="section-wrap process-bg">
+    <div class="section-inner">
       <p class="section-label">how it works</p>
       <h2>From idea to<br /><em>skin</em></h2>
 
@@ -794,30 +748,32 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- BOOKING CTA -->
-  <section id="booking" class="booking-section">
+  <div id="booking" class="booking-section">
     <div class="booking-bg"></div>
-    <p class="section-label" style="text-align:center;">ready when you are</p>
+    <p class="section-label" style="position:relative;">ready when you are</p>
     <h2>Let's talk<br /><em>about your skin.</em></h2>
     <p>Slots are limited. Reach out to start the conversation — consultations are free and there's no pressure.</p>
     <div>
       <a href="mailto:hello@inkinmuse.com" class="btn">send a message</a>
-      <a href="https://instagram.com" target="_blank" rel="noopener" class="btn btn-ghost" style="margin-left:1rem;">instagram</a>
+      <a href="https://instagram.com" target="_blank" rel="noopener" class="btn btn-ghost">instagram</a>
     </div>
-  </section>
+  </div>
 
   <!-- FOOTER -->
   <footer>
-    <span class="footer-logo">Ink In Muse</span>
-    <ul class="footer-links">
-      <li><a href="#about">about</a></li>
-      <li><a href="#services">services</a></li>
-      <li><a href="#gallery">gallery</a></li>
-      <li><a href="#booking">book</a></li>
-    </ul>
-    <span class="footer-copy">© 2026 Ink In Muse</span>
+    <div class="footer-inner">
+      <span class="footer-logo">Ink In Muse</span>
+      <ul class="footer-links">
+        <li><a href="#about">about</a></li>
+        <li><a href="#services">services</a></li>
+        <li><a href="#gallery">gallery</a></li>
+        <li><a href="#booking">book</a></li>
+      </ul>
+      <span class="footer-copy">© 2026 Ink In Muse</span>
+    </div>
   </footer>
 
 </body>
