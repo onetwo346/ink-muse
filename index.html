@@ -4,31 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ink In Muse — Tattoo Artist</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:      #0A0A0A;
-      --graphite:   #2E2E2E;
-      --graphite2:  #222222;
-      --parchment:  #E8DFD0;
-      --rose:       #C4837A;
-      --rose-dim:   #8A5A56;
-      --white:      #F5F2EE;
-      --serif:      'Playfair Display', Georgia, serif;
-      --sans:       'DM Sans', system-ui, sans-serif;
+      --ink:        #1A1218;
+      --plum:       #2D1B2E;
+      --mauve:      #7D4E6A;
+      --rose:       #C97D99;
+      --blush:      #E8B4C4;
+      --cream:      #F5EDE8;
+      --petal:      #F9F0F3;
+      --serif:      'Cormorant Garamond', Georgia, serif;
+      --sans:       'Jost', system-ui, sans-serif;
       --max:        1200px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--black);
-      color: var(--parchment);
+      background: var(--ink);
+      color: var(--cream);
       font-family: var(--sans);
       font-weight: 300;
-      line-height: 1.7;
+      line-height: 1.75;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -37,16 +37,16 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 200;
-      background: rgba(10,10,10,0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(232,223,208,0.08);
+      background: rgba(26,18,24,0.93);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(201,125,153,0.15);
     }
 
     .nav-inner {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 1.4rem 3rem;
+      padding: 1.3rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -54,11 +54,12 @@
 
     .nav-logo {
       font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--parchment);
+      font-size: 1.25rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--blush);
       text-decoration: none;
+      letter-spacing: 0.03em;
       white-space: nowrap;
     }
 
@@ -69,17 +70,17 @@
     }
 
     .nav-links a {
-      font-size: 0.85rem;
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      color: rgba(232,223,208,0.6);
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: rgba(245,237,232,0.55);
       text-decoration: none;
-      text-transform: lowercase;
+      text-transform: uppercase;
       transition: color 0.2s;
       white-space: nowrap;
     }
 
-    .nav-links a:hover { color: var(--rose); }
+    .nav-links a:hover { color: var(--blush); }
 
     /* ── HERO ────────────────────────────────── */
     .hero {
@@ -92,224 +93,272 @@
       overflow: hidden;
     }
 
-    .hero-bg {
+    /* Soft warm background glow */
+    .hero::before {
+      content: '';
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 60% 50% at 50% 60%, rgba(196,131,122,0.09) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(196,131,122,0.05) 0%, transparent 60%);
+        radial-gradient(ellipse 70% 60% at 50% 55%, rgba(125,78,106,0.22) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 35% at 75% 25%, rgba(201,125,153,0.1) 0%, transparent 55%),
+        radial-gradient(ellipse 30% 30% at 20% 75%, rgba(125,78,106,0.08) 0%, transparent 50%);
       pointer-events: none;
     }
 
-    .hero-line {
-      width: 1px;
-      height: 120px;
-      background: linear-gradient(to bottom, transparent, var(--rose), transparent);
-      margin: 0 auto 2.5rem;
+    /* Delicate petal shapes */
+    .hero-petal {
+      position: absolute;
+      border-radius: 50% 0 50% 0;
+      opacity: 0.04;
+      pointer-events: none;
+    }
+    .hero-petal-1 { width: 300px; height: 300px; background: var(--rose); top: 15%; left: 8%; transform: rotate(30deg); }
+    .hero-petal-2 { width: 200px; height: 200px; background: var(--blush); bottom: 20%; right: 10%; transform: rotate(-45deg); }
+    .hero-petal-3 { width: 150px; height: 150px; background: var(--rose); top: 60%; left: 15%; transform: rotate(15deg); }
+
+    .hero-content { position: relative; }
+
+    .hero-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-ornament-line {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--rose));
+    }
+
+    .hero-ornament-line.flip {
+      background: linear-gradient(to left, transparent, var(--rose));
+    }
+
+    .hero-ornament-diamond {
+      width: 5px; height: 5px;
+      background: var(--rose);
+      transform: rotate(45deg);
     }
 
     .hero-eyebrow {
-      font-family: var(--sans);
-      font-size: 0.78rem;
-      font-weight: 400;
-      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.22em;
       color: var(--rose);
-      text-transform: lowercase;
-      margin-bottom: 1.6rem;
+      text-transform: uppercase;
+      margin-bottom: 1.4rem;
     }
 
     .hero-title {
       font-family: var(--serif);
-      font-size: clamp(3.5rem, 9vw, 8rem);
-      font-weight: 700;
-      line-height: 0.95;
-      color: var(--parchment);
-      margin-bottom: 0.3em;
+      font-size: clamp(4rem, 10vw, 9rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 0.9;
+      color: var(--cream);
+      margin-bottom: 0.2em;
     }
 
-    .hero-title em {
-      font-style: italic;
-      font-weight: 400;
-      color: var(--rose);
+    .hero-title strong {
+      font-style: normal;
+      font-weight: 500;
+      color: var(--blush);
     }
 
     .hero-sub {
-      font-size: 1rem;
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-style: italic;
       font-weight: 300;
-      color: rgba(232,223,208,0.55);
-      max-width: 36ch;
+      color: rgba(245,237,232,0.5);
+      max-width: 40ch;
       margin: 1.8rem auto 3rem;
-      line-height: 1.8;
+      line-height: 1.9;
     }
+
+    .btn-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
     .btn {
       display: inline-block;
-      padding: 0.9rem 2.4rem;
-      border: 1px solid var(--rose);
-      color: var(--rose);
+      padding: 0.85rem 2.2rem;
       font-family: var(--sans);
-      font-size: 0.82rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.14em;
       text-decoration: none;
-      text-transform: lowercase;
-      transition: background 0.25s, color 0.25s;
+      text-transform: uppercase;
+      transition: all 0.25s;
     }
 
-    .btn:hover {
+    .btn-primary {
       background: var(--rose);
-      color: var(--black);
+      color: var(--ink);
+      border: 1px solid var(--rose);
     }
 
-    .btn-ghost {
-      border-color: rgba(232,223,208,0.3);
-      color: rgba(232,223,208,0.6);
-      margin-left: 1rem;
+    .btn-primary:hover {
+      background: var(--blush);
+      border-color: var(--blush);
     }
 
-    .btn-ghost:hover {
-      background: rgba(232,223,208,0.08);
-      color: var(--parchment);
+    .btn-outline {
+      border: 1px solid rgba(201,125,153,0.4);
+      color: rgba(245,237,232,0.65);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--blush);
+      color: var(--blush);
     }
 
     /* ── MARQUEE ─────────────────────────────── */
     .marquee-wrap {
       overflow: hidden;
-      border-top: 1px solid rgba(232,223,208,0.1);
-      border-bottom: 1px solid rgba(232,223,208,0.1);
-      padding: 1rem 0;
-      background: var(--graphite);
+      border-top: 1px solid rgba(201,125,153,0.15);
+      border-bottom: 1px solid rgba(201,125,153,0.15);
+      padding: 0.9rem 0;
+      background: var(--plum);
     }
 
     .marquee-track {
       display: flex;
-      gap: 3rem;
-      animation: scroll 22s linear infinite;
+      gap: 2.5rem;
+      animation: marquee 24s linear infinite;
       white-space: nowrap;
     }
 
     .marquee-track span {
       font-family: var(--serif);
       font-style: italic;
-      font-size: 0.9rem;
-      color: rgba(232,223,208,0.4);
+      font-size: 0.95rem;
+      color: rgba(232,180,196,0.45);
       flex-shrink: 0;
     }
 
     .marquee-track .dot {
       color: var(--rose);
       font-style: normal;
+      font-size: 0.5rem;
+      vertical-align: middle;
     }
 
-    @keyframes scroll {
+    @keyframes marquee {
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .marquee-track { animation: none; }
-    }
+    @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 
     /* ── SHARED ──────────────────────────────── */
-    .section-wrap {
-      padding: 6rem 3rem;
-    }
-
-    .section-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-    }
+    .section-wrap { padding: 6rem 3rem; }
+    .section-inner { max-width: var(--max); margin: 0 auto; }
 
     .section-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.14em;
-      color: var(--rose-dim);
-      text-transform: lowercase;
-      margin-bottom: 1.2rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      color: var(--rose);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
     }
 
     h2 {
       font-family: var(--serif);
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 600;
-      line-height: 1.15;
-      color: var(--parchment);
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.1;
+      color: var(--cream);
     }
 
-    h2 em { font-weight: 400; color: var(--rose); }
+    h2 strong {
+      font-style: normal;
+      font-weight: 500;
+      color: var(--blush);
+    }
 
     /* ── ABOUT ───────────────────────────────── */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1.4fr;
-      gap: 6rem;
+      gap: 5rem;
       align-items: center;
     }
 
-    /* Dark panel replacing the SVG placeholder */
     .about-panel {
       width: 100%;
       aspect-ratio: 3/4;
-      background: var(--graphite2);
-      border: 1px solid rgba(232,223,208,0.07);
+      background: var(--plum);
+      border: 1px solid rgba(201,125,153,0.12);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
+      gap: 0.8rem;
       position: relative;
+      overflow: hidden;
+    }
+
+    .about-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(201,125,153,0.08) 0%, transparent 60%);
     }
 
     .about-panel-label {
       font-family: var(--serif);
       font-style: italic;
-      font-size: 1.1rem;
-      color: rgba(232,223,208,0.2);
-      letter-spacing: 0.06em;
+      font-size: 1rem;
+      color: rgba(232,180,196,0.25);
+      position: relative;
     }
 
     .about-panel-hint {
-      font-size: 0.72rem;
-      color: rgba(232,223,208,0.15);
+      font-size: 0.68rem;
+      color: rgba(232,180,196,0.15);
       letter-spacing: 0.1em;
+      position: relative;
     }
 
-    /* thin rose border accent offset */
-    .about-panel::after {
+    /* offset accent box */
+    .about-panel-wrap { position: relative; }
+    .about-panel-wrap::after {
       content: '';
       position: absolute;
-      bottom: -1.2rem;
-      right: -1.2rem;
-      width: 55%;
+      bottom: -1rem;
+      right: -1rem;
+      width: 50%;
       aspect-ratio: 1;
-      border: 1px solid rgba(196,131,122,0.2);
+      border: 1px solid rgba(201,125,153,0.18);
       z-index: -1;
     }
 
     .about-text p {
       font-size: 1rem;
-      color: rgba(232,223,208,0.7);
-      margin-top: 1.5rem;
+      color: rgba(245,237,232,0.65);
+      margin-top: 1.4rem;
       max-width: 52ch;
+      line-height: 1.85;
     }
 
+    .about-cta { margin-top: 2.5rem; }
 
     /* ── SERVICES ────────────────────────────── */
-    .services-bg {
-      background: var(--graphite);
-    }
+    .services-bg { background: var(--plum); }
 
     .services-head {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
       align-items: end;
-      margin-bottom: 4rem;
+      margin-bottom: 3.5rem;
     }
 
     .services-head p {
       font-size: 0.95rem;
-      color: rgba(232,223,208,0.55);
+      color: rgba(245,237,232,0.5);
       max-width: 45ch;
     }
 
@@ -317,28 +366,42 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1px;
-      background: rgba(232,223,208,0.08);
+      background: rgba(201,125,153,0.12);
     }
 
     .service-card {
-      background: var(--graphite);
-      padding: 2.8rem 2.4rem;
-      transition: background 0.2s;
+      background: var(--plum);
+      padding: 2.6rem 2.2rem;
+      transition: background 0.25s;
+      position: relative;
+      overflow: hidden;
     }
 
-    .service-card:hover { background: #363636; }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--mauve), var(--rose));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .service-card:hover { background: #3a2139; }
+    .service-card:hover::before { opacity: 1; }
 
     .service-card h3 {
       font-family: var(--serif);
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--parchment);
-      margin-bottom: 0.8rem;
+      font-size: 1.5rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--blush);
+      margin-bottom: 0.9rem;
     }
 
     .service-card p {
       font-size: 0.88rem;
-      color: rgba(232,223,208,0.5);
+      color: rgba(245,237,232,0.5);
       line-height: 1.8;
     }
 
@@ -347,20 +410,18 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
     }
 
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.75rem;
+      gap: 0.6rem;
     }
 
     .gallery-item {
-      background: var(--graphite2);
       overflow: hidden;
       position: relative;
-      border: 1px solid rgba(232,223,208,0.05);
     }
 
     .gallery-item:first-child {
@@ -368,113 +429,231 @@
       grid-row: span 2;
     }
 
-    /* Clean dark tile — no SVG, just background */
     .gallery-tile {
       width: 100%;
       aspect-ratio: 1;
-      background: linear-gradient(145deg, #252525 0%, #181818 100%);
+      background: var(--plum);
       display: flex;
       align-items: flex-end;
-      padding: 1.2rem;
+      padding: 1rem;
+      transition: filter 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-tile::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(201,125,153,0.06) 0%, transparent 60%);
     }
 
     .gallery-item:first-child .gallery-tile {
       aspect-ratio: unset;
       height: 100%;
-      min-height: 320px;
+      min-height: 300px;
     }
 
     .gallery-tag {
-      font-size: 0.72rem;
-      color: rgba(232,223,208,0.3);
+      font-size: 0.68rem;
+      color: rgba(232,180,196,0.35);
       letter-spacing: 0.08em;
+      text-transform: uppercase;
       transition: color 0.2s;
+      position: relative;
     }
 
-    .gallery-item:hover .gallery-tile { filter: brightness(1.2); }
-    .gallery-item:hover .gallery-tag  { color: rgba(232,223,208,0.7); }
+    .gallery-item:hover .gallery-tile { filter: brightness(1.25); }
+    .gallery-item:hover .gallery-tag  { color: var(--blush); }
 
     /* ── PROCESS ─────────────────────────────── */
-    .process-bg {
-      background: #0D0D0D;
-    }
+    .process-bg { background: #150F13; }
 
     .process-steps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      margin-top: 4rem;
-      border: 1px solid rgba(232,223,208,0.1);
+      margin-top: 3.5rem;
+      border: 1px solid rgba(201,125,153,0.12);
     }
 
     .process-step {
-      padding: 2.5rem 2rem;
-      border-right: 1px solid rgba(232,223,208,0.1);
+      padding: 2.4rem 2rem;
+      border-right: 1px solid rgba(201,125,153,0.12);
     }
 
     .process-step:last-child { border-right: none; }
 
-    .step-line {
-      width: 24px;
-      height: 1px;
-      background: var(--rose);
-      margin-bottom: 1.5rem;
+    .step-num {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-style: italic;
+      color: rgba(201,125,153,0.15);
+      line-height: 1;
+      margin-bottom: 1.2rem;
     }
 
     .process-step h3 {
       font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--parchment);
-      margin-bottom: 0.7rem;
+      font-size: 1.2rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--blush);
+      margin-bottom: 0.6rem;
     }
 
     .process-step p {
-      font-size: 0.85rem;
-      color: rgba(232,223,208,0.45);
-      line-height: 1.75;
+      font-size: 0.84rem;
+      color: rgba(245,237,232,0.4);
+      line-height: 1.8;
     }
 
-    /* ── BOOKING CTA ─────────────────────────── */
+    /* ── PRICING ─────────────────────────────── */
+    .pricing-bg { background: var(--ink); }
+
+    .deposit-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      border: 1px solid rgba(201,125,153,0.3);
+      background: rgba(201,125,153,0.06);
+      padding: 0.85rem 1.6rem;
+      margin: 2rem 0 3rem;
+    }
+
+    .deposit-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--rose);
+      flex-shrink: 0;
+    }
+
+    .deposit-banner span {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      color: var(--rose);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(201,125,153,0.1);
+    }
+
+    .price-card {
+      background: #1f141c;
+      padding: 2.2rem 2rem;
+      transition: background 0.2s;
+    }
+
+    .price-card:hover { background: #261a23; }
+
+    .price-card h3 {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--blush);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.9rem;
+      border-bottom: 1px solid rgba(201,125,153,0.12);
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(201,125,153,0.05);
+    }
+
+    .price-row:last-of-type { border-bottom: none; }
+
+    .price-row-label {
+      font-size: 0.83rem;
+      color: rgba(245,237,232,0.5);
+    }
+
+    .price-row-amount {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--cream);
+      margin-left: 1rem;
+    }
+
+    .price-note {
+      font-size: 0.7rem;
+      color: rgba(201,125,153,0.4);
+      font-style: italic;
+      margin-top: 0.7rem;
+    }
+
+    .price-card-featured {
+      background: #231520;
+      border-top: 2px solid var(--rose);
+    }
+
+    .price-card-featured:hover { background: #2b1c28; }
+
+    /* ── BOOKING ─────────────────────────────── */
     .booking-section {
       text-align: center;
       padding: 8rem 2rem;
       position: relative;
       overflow: hidden;
+      background: var(--plum);
     }
 
-    .booking-bg {
+    .booking-section::before {
+      content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(196,131,122,0.12) 0%, transparent 70%);
+      background:
+        radial-gradient(ellipse 60% 70% at 50% 50%, rgba(201,125,153,0.14) 0%, transparent 65%);
       pointer-events: none;
     }
 
     .booking-section h2 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
       margin-bottom: 1rem;
       position: relative;
     }
 
     .booking-section > p {
       font-size: 1rem;
-      color: rgba(232,223,208,0.5);
-      max-width: 42ch;
-      margin: 0 auto 2.8rem;
+      color: rgba(245,237,232,0.5);
+      max-width: 44ch;
+      margin: 0 auto 2.5rem;
       position: relative;
     }
 
-    .booking-section > div { position: relative; }
+    .booking-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 1.8rem;
+    }
+
+    .booking-address {
+      position: relative;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: rgba(245,237,232,0.3);
+      text-transform: uppercase;
+    }
 
     /* ── FOOTER ──────────────────────────────── */
     footer {
-      border-top: 1px solid rgba(232,223,208,0.1);
-      background: var(--black);
+      border-top: 1px solid rgba(201,125,153,0.15);
+      background: var(--ink);
     }
 
     .footer-inner {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 3rem;
+      padding: 2.5rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -482,8 +661,9 @@
 
     .footer-logo {
       font-family: var(--serif);
-      font-size: 1rem;
-      color: rgba(232,223,208,0.5);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: rgba(232,180,196,0.5);
     }
 
     .footer-links {
@@ -493,107 +673,21 @@
     }
 
     .footer-links a {
-      font-size: 0.78rem;
-      color: rgba(232,223,208,0.35);
+      font-size: 0.72rem;
+      color: rgba(245,237,232,0.3);
       text-decoration: none;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       transition: color 0.2s;
     }
 
-    .footer-links a:hover { color: var(--rose); }
+    .footer-links a:hover { color: var(--blush); }
 
     .footer-copy {
-      font-size: 0.75rem;
-      color: rgba(232,223,208,0.25);
-    }
-
-    /* ── PRICING ─────────────────────────────── */
-    .pricing-bg { background: var(--black); }
-
-    .deposit-banner {
-      border: 1px solid var(--rose);
-      background: rgba(196,131,122,0.06);
-      padding: 1rem 1.8rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 3.5rem;
-    }
-
-    .deposit-banner span {
-      font-size: 0.82rem;
+      font-size: 0.7rem;
+      color: rgba(245,237,232,0.2);
       letter-spacing: 0.06em;
-      color: var(--rose);
     }
-
-    .deposit-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--rose);
-      flex-shrink: 0;
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: rgba(232,223,208,0.08);
-    }
-
-    .price-card {
-      background: #111111;
-      padding: 2.4rem 2.2rem;
-      transition: background 0.2s;
-    }
-
-    .price-card:hover { background: #181818; }
-
-    .price-card h3 {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--parchment);
-      margin-bottom: 1.2rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(232,223,208,0.1);
-    }
-
-    .price-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 0.45rem 0;
-      border-bottom: 1px solid rgba(232,223,208,0.04);
-    }
-
-    .price-row:last-child { border-bottom: none; }
-
-    .price-row-label {
-      font-size: 0.83rem;
-      color: rgba(232,223,208,0.55);
-    }
-
-    .price-row-amount {
-      font-family: var(--serif);
-      font-size: 0.9rem;
-      color: var(--parchment);
-      white-space: nowrap;
-      margin-left: 1rem;
-    }
-
-    .price-note {
-      font-size: 0.72rem;
-      color: rgba(232,223,208,0.3);
-      font-style: italic;
-      margin-top: 0.8rem;
-    }
-
-    .price-card-featured {
-      background: #131313;
-      border-top: 2px solid var(--rose);
-    }
-
-    .price-card-featured:hover { background: #1a1a1a; }
 
     /* ── RESPONSIVE ──────────────────────────── */
     @media (max-width: 1000px) {
@@ -602,19 +696,19 @@
 
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
       .about-panel { aspect-ratio: 4/3; }
-      .about-panel::after { display: none; }
+      .about-panel-wrap::after { display: none; }
 
       .services-head { grid-template-columns: 1fr; gap: 1.5rem; }
       .services-grid { grid-template-columns: 1fr 1fr; }
-      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-grid  { grid-template-columns: 1fr 1fr; }
 
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .gallery-item:first-child { grid-column: span 2; }
 
       .process-steps { grid-template-columns: 1fr 1fr; }
       .process-step:nth-child(2) { border-right: none; }
-      .process-step:nth-child(3) { border-right: 1px solid rgba(232,223,208,0.1); border-top: 1px solid rgba(232,223,208,0.1); }
-      .process-step:nth-child(4) { border-right: none; border-top: 1px solid rgba(232,223,208,0.1); }
+      .process-step:nth-child(3) { border-right: 1px solid rgba(201,125,153,0.12); border-top: 1px solid rgba(201,125,153,0.12); }
+      .process-step:nth-child(4) { border-right: none; border-top: 1px solid rgba(201,125,153,0.12); }
 
       .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
@@ -622,27 +716,18 @@
 
     @media (max-width: 600px) {
       .nav-inner { padding: 1rem 1.5rem; }
-      .nav-links { gap: 1.2rem; }
-      .nav-links a { font-size: 0.78rem; }
-
-      .hero-title { font-size: 3rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.7rem; letter-spacing: 0.08em; }
+      .hero-title { font-size: 3.2rem; }
       .section-wrap { padding: 4rem 1.5rem; }
-
       .services-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
-
+      .pricing-grid  { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr; }
       .gallery-item:first-child { grid-column: span 1; }
-      .gallery-item:first-child .gallery-tile { min-height: 260px; }
-
+      .gallery-item:first-child .gallery-tile { min-height: 250px; }
       .process-steps { grid-template-columns: 1fr; }
-      .process-step { border-right: none; border-bottom: 1px solid rgba(232,223,208,0.1); }
-      .process-step:nth-child(3) { border-right: none; border-top: none; }
-      .process-step:nth-child(4) { border-right: none; }
+      .process-step { border-right: none !important; border-bottom: 1px solid rgba(201,125,153,0.12); }
       .process-step:last-child { border-bottom: none; }
-
-
-      .btn-ghost { margin-left: 0; margin-top: 0.8rem; display: block; text-align: center; }
     }
   </style>
 </head>
@@ -653,45 +738,53 @@
     <div class="nav-inner">
       <a href="#" class="nav-logo">Ink In Muse</a>
       <ul class="nav-links">
-        <li><a href="#about">about</a></li>
-        <li><a href="#services">services</a></li>
-        <li><a href="#gallery">gallery</a></li>
-        <li><a href="#pricing">pricing</a></li>
-        <li><a href="#booking">book</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#booking">Book</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-bg"></div>
-    <div>
-      <div class="hero-line"></div>
-      <p class="hero-eyebrow">tattoo artistry · touch-ups · cover-ups</p>
-      <h1 class="hero-title">Ink In<br /><em>Muse</em></h1>
+    <div class="hero-petal hero-petal-1"></div>
+    <div class="hero-petal hero-petal-2"></div>
+    <div class="hero-petal hero-petal-3"></div>
+    <div class="hero-content">
+      <div class="hero-ornament">
+        <div class="hero-ornament-line"></div>
+        <div class="hero-ornament-diamond"></div>
+        <div class="hero-ornament-line flip"></div>
+      </div>
+      <p class="hero-eyebrow">Tattoo Artistry · Touch-Ups · Cover-Ups</p>
+      <h1 class="hero-title"><strong>Ink In</strong><br /><em>Muse</em></h1>
       <p class="hero-sub">Art. Ink. Inspire. — Syracuse, NY</p>
-      <a href="#booking" class="btn">book a consultation</a>
-      <a href="#gallery" class="btn btn-ghost">view work</a>
+      <div class="btn-row">
+        <a href="#booking" class="btn btn-primary">Book a Consultation</a>
+        <a href="#gallery" class="btn btn-outline">View Work</a>
+      </div>
     </div>
   </div>
 
   <!-- MARQUEE -->
   <div class="marquee-wrap" aria-hidden="true">
     <div class="marquee-track">
-      <span>touch-ups</span><span class="dot">◆</span>
-      <span>cover-ups</span><span class="dot">◆</span>
-      <span>fine line</span><span class="dot">◆</span>
-      <span>blackwork</span><span class="dot">◆</span>
-      <span>colour restoration</span><span class="dot">◆</span>
-      <span>scar coverage</span><span class="dot">◆</span>
-      <span>custom design</span><span class="dot">◆</span>
-      <span>touch-ups</span><span class="dot">◆</span>
-      <span>cover-ups</span><span class="dot">◆</span>
-      <span>fine line</span><span class="dot">◆</span>
-      <span>blackwork</span><span class="dot">◆</span>
-      <span>colour restoration</span><span class="dot">◆</span>
-      <span>scar coverage</span><span class="dot">◆</span>
-      <span>custom design</span><span class="dot">◆</span>
+      <span>Touch-Ups</span><span class="dot">✦</span>
+      <span>Cover-Ups</span><span class="dot">✦</span>
+      <span>Fine Line</span><span class="dot">✦</span>
+      <span>Name Tattoos</span><span class="dot">✦</span>
+      <span>Colour Restore</span><span class="dot">✦</span>
+      <span>Scar Coverage</span><span class="dot">✦</span>
+      <span>Custom Design</span><span class="dot">✦</span>
+      <span>Touch-Ups</span><span class="dot">✦</span>
+      <span>Cover-Ups</span><span class="dot">✦</span>
+      <span>Fine Line</span><span class="dot">✦</span>
+      <span>Name Tattoos</span><span class="dot">✦</span>
+      <span>Colour Restore</span><span class="dot">✦</span>
+      <span>Scar Coverage</span><span class="dot">✦</span>
+      <span>Custom Design</span><span class="dot">✦</span>
     </div>
   </div>
 
@@ -699,22 +792,21 @@
   <div id="about" class="section-wrap">
     <div class="section-inner">
       <div class="about-grid">
-
-        <!-- Clean dark photo placeholder — drop an <img> here when ready -->
-        <div class="about-panel">
-          <span class="about-panel-label">your photo here</span>
-          <span class="about-panel-hint">replace with an artist or studio image</span>
+        <div class="about-panel-wrap">
+          <div class="about-panel">
+            <span class="about-panel-label">your photo here</span>
+            <span class="about-panel-hint">replace with an artist or studio image</span>
+          </div>
         </div>
-
         <div class="about-text">
-          <p class="section-label">about the artist</p>
-          <h2>Ink is patience.<br /><em>Cover-ups are craft.</em></h2>
+          <p class="section-label">About the Artist</p>
+          <h2>Ink is patience.<br /><strong>Cover-ups are craft.</strong></h2>
           <p>Every piece that comes through the door has a story — and sometimes that story needs a new chapter. Whether you're freshening faded lines, reclaiming skin from a tattoo that no longer fits, or starting completely fresh, the work here is intentional, unhurried, and built to last.</p>
-          <p style="margin-top:1rem;">Specialising in touch-ups and cover-up transformations, with a keen eye for matching existing styles or introducing something entirely new.</p>
-
-
+          <p>Specialising in touch-ups and cover-up transformations, with a keen eye for matching existing styles or introducing something entirely new.</p>
+          <div class="about-cta">
+            <a href="#booking" class="btn btn-primary">Get in Touch</a>
+          </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -724,12 +816,11 @@
     <div class="section-inner">
       <div class="services-head">
         <div>
-          <p class="section-label">what we do</p>
-          <h2>Every kind of<br /><em>transformation</em></h2>
+          <p class="section-label">What We Do</p>
+          <h2>Every kind of<br /><strong>transformation</strong></h2>
         </div>
-        <p>From subtle refreshes to complete reimaginings — the studio specialises in work that demands a skilled eye and a steady hand.</p>
+        <p>From subtle refreshes to complete reimaginings — specialising in work that demands a skilled eye and a steady hand.</p>
       </div>
-
       <div class="services-grid">
         <div class="service-card">
           <h3>Touch-Ups</h3>
@@ -737,7 +828,7 @@
         </div>
         <div class="service-card">
           <h3>Cover-Ups</h3>
-          <p>Turning what was into something new. Whether it's a name, an old design, or a regret — we build a piece that hides the past while standing beautifully on its own.</p>
+          <p>Turning what was into something new. Whether it's a name, an old design, or a regret — we build a piece that hides the past and stands beautifully on its own.</p>
         </div>
         <div class="service-card">
           <h3>Custom Design</h3>
@@ -752,37 +843,26 @@
     <div class="section-inner">
       <div class="gallery-intro">
         <div>
-          <p class="section-label">portfolio</p>
-          <h2>The <em>work</em></h2>
+          <p class="section-label">Portfolio</p>
+          <h2>The <strong>work</strong></h2>
         </div>
-        <a href="#booking" class="btn" style="align-self:flex-end;">book your piece</a>
+        <a href="#booking" class="btn btn-primary" style="align-self:flex-end;">Book Your Piece</a>
       </div>
-
       <div class="gallery-grid">
         <div class="gallery-item">
-          <div class="gallery-tile">
-            <span class="gallery-tag">cover-up transformation</span>
-          </div>
+          <div class="gallery-tile"><span class="gallery-tag">Cover-Up Transformation</span></div>
         </div>
         <div class="gallery-item">
-          <div class="gallery-tile">
-            <span class="gallery-tag">touch-up · colour restore</span>
-          </div>
+          <div class="gallery-tile"><span class="gallery-tag">Touch-Up · Colour Restore</span></div>
         </div>
         <div class="gallery-item">
-          <div class="gallery-tile">
-            <span class="gallery-tag">blackwork · custom</span>
-          </div>
+          <div class="gallery-tile"><span class="gallery-tag">Blackwork · Custom</span></div>
         </div>
         <div class="gallery-item">
-          <div class="gallery-tile">
-            <span class="gallery-tag">geometric · fine line</span>
-          </div>
+          <div class="gallery-tile"><span class="gallery-tag">Name Tattoo</span></div>
         </div>
         <div class="gallery-item">
-          <div class="gallery-tile">
-            <span class="gallery-tag">scar coverage</span>
-          </div>
+          <div class="gallery-tile"><span class="gallery-tag">Neck Piece</span></div>
         </div>
       </div>
     </div>
@@ -791,27 +871,26 @@
   <!-- PROCESS -->
   <div id="process" class="section-wrap process-bg">
     <div class="section-inner">
-      <p class="section-label">how it works</p>
-      <h2>From idea to<br /><em>skin</em></h2>
-
+      <p class="section-label">How It Works</p>
+      <h2>From idea<br /><strong>to skin</strong></h2>
       <div class="process-steps">
         <div class="process-step">
-          <div class="step-line"></div>
+          <div class="step-num">01</div>
           <h3>Consultation</h3>
           <p>We talk through your idea, look at the existing tattoo if applicable, and set honest expectations about what's possible.</p>
         </div>
         <div class="process-step">
-          <div class="step-line"></div>
+          <div class="step-num">02</div>
           <h3>Design</h3>
           <p>A custom design is drawn up with your input — nothing is finalised until you love it.</p>
         </div>
         <div class="process-step">
-          <div class="step-line"></div>
+          <div class="step-num">03</div>
           <h3>Sitting</h3>
           <p>Work done at a pace that suits both the design and your comfort. Cover-ups may require multiple sessions.</p>
         </div>
         <div class="process-step">
-          <div class="step-line"></div>
+          <div class="step-num">04</div>
           <h3>Aftercare</h3>
           <p>Full aftercare guidance provided. Touch-up appointments offered within the healing window if needed.</p>
         </div>
@@ -822,118 +901,63 @@
   <!-- PRICING -->
   <div id="pricing" class="section-wrap pricing-bg">
     <div class="section-inner">
-      <p class="section-label">pricing</p>
-      <h2>Transparent <em>rates</em></h2>
-
-      <div class="deposit-banner" style="margin-top:2rem;">
+      <p class="section-label">Pricing</p>
+      <h2>Transparent <strong>rates</strong></h2>
+      <div class="deposit-banner">
         <div class="deposit-dot"></div>
         <span>A $20 deposit is required to secure your booking</span>
       </div>
-
       <div class="pricing-grid">
-
         <div class="price-card">
           <h3>Name Tattoos</h3>
-          <div class="price-row">
-            <span class="price-row-label">Small</span>
-            <span class="price-row-amount">$65</span>
-          </div>
-          <div class="price-row">
-            <span class="price-row-label">Medium</span>
-            <span class="price-row-amount">$75</span>
-          </div>
-          <div class="price-row">
-            <span class="price-row-label">Large</span>
-            <span class="price-row-amount">$80</span>
-          </div>
+          <div class="price-row"><span class="price-row-label">Small</span><span class="price-row-amount">$65</span></div>
+          <div class="price-row"><span class="price-row-label">Medium</span><span class="price-row-amount">$75</span></div>
+          <div class="price-row"><span class="price-row-label">Large</span><span class="price-row-amount">$80</span></div>
         </div>
-
         <div class="price-card">
           <h3>Back Tattoos</h3>
-          <div class="price-row">
-            <span class="price-row-label">Small portrait</span>
-            <span class="price-row-amount">$90</span>
-          </div>
-          <div class="price-row">
-            <span class="price-row-label">Medium</span>
-            <span class="price-row-amount">$180</span>
-          </div>
-          <div class="price-row">
-            <span class="price-row-label">Large</span>
-            <span class="price-row-amount">$220</span>
-          </div>
+          <div class="price-row"><span class="price-row-label">Small portrait</span><span class="price-row-amount">$90</span></div>
+          <div class="price-row"><span class="price-row-label">Medium</span><span class="price-row-amount">$180</span></div>
+          <div class="price-row"><span class="price-row-label">Large</span><span class="price-row-amount">$220</span></div>
           <p class="price-note">*depending on detail*</p>
         </div>
-
         <div class="price-card">
           <h3>Arm Tattoos</h3>
-          <div class="price-row">
-            <span class="price-row-label">Quarter sleeve</span>
-            <span class="price-row-amount">$200</span>
-          </div>
-          <div class="price-row">
-            <span class="price-row-label">Half sleeve</span>
-            <span class="price-row-amount">$140</span>
-          </div>
+          <div class="price-row"><span class="price-row-label">Quarter sleeve</span><span class="price-row-amount">$200</span></div>
+          <div class="price-row"><span class="price-row-label">Half sleeve</span><span class="price-row-amount">$140</span></div>
         </div>
-
         <div class="price-card">
           <h3>Neck Tattoos</h3>
-          <div class="price-row">
-            <span class="price-row-label">Small</span>
-            <span class="price-row-amount">$70</span>
-          </div>
-          <div class="price-row">
-            <span class="price-row-label">Medium</span>
-            <span class="price-row-amount">$90</span>
-          </div>
-          <div class="price-row">
-            <span class="price-row-label">Large</span>
-            <span class="price-row-amount">$120</span>
-          </div>
+          <div class="price-row"><span class="price-row-label">Small</span><span class="price-row-amount">$70</span></div>
+          <div class="price-row"><span class="price-row-label">Medium</span><span class="price-row-amount">$90</span></div>
+          <div class="price-row"><span class="price-row-label">Large</span><span class="price-row-amount">$120</span></div>
         </div>
-
         <div class="price-card">
           <h3>Foot / Leg</h3>
-          <div class="price-row">
-            <span class="price-row-label">Foot</span>
-            <span class="price-row-amount">$85</span>
-          </div>
-          <div class="price-row">
-            <span class="price-row-label">Thigh</span>
-            <span class="price-row-amount">$100–$140</span>
-          </div>
-          <div class="price-row">
-            <span class="price-row-label">Calf</span>
-            <span class="price-row-amount">$130</span>
-          </div>
+          <div class="price-row"><span class="price-row-label">Foot</span><span class="price-row-amount">$85</span></div>
+          <div class="price-row"><span class="price-row-label">Thigh</span><span class="price-row-amount">$100–$140</span></div>
+          <div class="price-row"><span class="price-row-label">Calf</span><span class="price-row-amount">$130</span></div>
         </div>
-
         <div class="price-card price-card-featured">
           <h3>Tap Outs</h3>
-          <div class="price-row">
-            <span class="price-row-label">Hourly rate</span>
-            <span class="price-row-amount">$500-$700 / hr</span>
-          </div>
+          <div class="price-row"><span class="price-row-label">Hourly rate</span><span class="price-row-amount">$100 / hr</span></div>
           <p class="price-note">For larger pieces billed by the hour</p>
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- BOOKING CTA -->
+  <!-- BOOKING -->
   <div id="booking" class="booking-section">
-    <div class="booking-bg"></div>
-    <p class="section-label" style="position:relative;">ready when you are</p>
-    <h2>Let's talk<br /><em>about your skin.</em></h2>
+    <p class="section-label" style="position:relative;">Ready When You Are</p>
+    <h2>Let's talk<br /><strong>about your skin.</strong></h2>
     <p>Slots are limited. A $20 deposit secures your booking. Reach out on Instagram or by phone to get started.</p>
-    <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; position:relative;">
-      <a href="tel:6808950269" class="btn">📞 (680) 895-0269</a>
-      <a href="https://instagram.com/Armonie.Xlee" target="_blank" rel="noopener" class="btn btn-ghost">IG: @Armonie.Xlee</a>
-      <a href="https://facebook.com/Armoniexlee" target="_blank" rel="noopener" class="btn btn-ghost">FB: @Armoniexlee</a>
+    <div class="booking-contacts">
+      <a href="tel:6808950269" class="btn btn-primary">📞 (680) 895-0269</a>
+      <a href="https://instagram.com/Armonie.Xlee" target="_blank" rel="noopener" class="btn btn-outline">IG: @Armonie.Xlee</a>
+      <a href="https://facebook.com/Armoniexlee" target="_blank" rel="noopener" class="btn btn-outline">FB: @Armoniexlee</a>
     </div>
-    <p style="position:relative; margin-top:2rem; font-size:0.82rem; color:rgba(232,223,208,0.3); letter-spacing:0.06em;">📍 2827 James St, Syracuse, NY</p>
+    <p class="booking-address">📍 2827 James St, Syracuse, NY</p>
   </div>
 
   <!-- FOOTER -->
@@ -941,14 +965,14 @@
     <div class="footer-inner">
       <span class="footer-logo">Ink In Muse</span>
       <ul class="footer-links">
-        <li><a href="#about">about</a></li>
-        <li><a href="#services">services</a></li>
-        <li><a href="#gallery">gallery</a></li>
-        <li><a href="#pricing">pricing</a></li>
-        <li><a href="#booking">book</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#booking">Book</a></li>
         <li><a href="https://instagram.com/Armonie.Xlee" target="_blank" rel="noopener">@Armonie.Xlee</a></li>
       </ul>
-      <span class="footer-copy">© 2026 Ink In Muse · Syracuse, NY · Art. Ink. Inspire.</span>
+      <span class="footer-copy">© 2026 Ink In Muse · Art. Ink. Inspire.</span>
     </div>
   </footer>
 
