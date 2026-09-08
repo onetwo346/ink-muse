@@ -293,28 +293,6 @@
       max-width: 52ch;
     }
 
-    .about-stats {
-      display: flex;
-      gap: 3rem;
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(232,223,208,0.1);
-    }
-
-    .stat-num {
-      font-family: var(--serif);
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--parchment);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.78rem;
-      color: rgba(232,223,208,0.45);
-      margin-top: 0.3rem;
-      letter-spacing: 0.05em;
-    }
 
     /* ── SERVICES ────────────────────────────── */
     .services-bg {
@@ -529,6 +507,94 @@
       color: rgba(232,223,208,0.25);
     }
 
+    /* ── PRICING ─────────────────────────────── */
+    .pricing-bg { background: var(--black); }
+
+    .deposit-banner {
+      border: 1px solid var(--rose);
+      background: rgba(196,131,122,0.06);
+      padding: 1rem 1.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .deposit-banner span {
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      color: var(--rose);
+    }
+
+    .deposit-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--rose);
+      flex-shrink: 0;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(232,223,208,0.08);
+    }
+
+    .price-card {
+      background: #111111;
+      padding: 2.4rem 2.2rem;
+      transition: background 0.2s;
+    }
+
+    .price-card:hover { background: #181818; }
+
+    .price-card h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--parchment);
+      margin-bottom: 1.2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(232,223,208,0.1);
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid rgba(232,223,208,0.04);
+    }
+
+    .price-row:last-child { border-bottom: none; }
+
+    .price-row-label {
+      font-size: 0.83rem;
+      color: rgba(232,223,208,0.55);
+    }
+
+    .price-row-amount {
+      font-family: var(--serif);
+      font-size: 0.9rem;
+      color: var(--parchment);
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
+    .price-note {
+      font-size: 0.72rem;
+      color: rgba(232,223,208,0.3);
+      font-style: italic;
+      margin-top: 0.8rem;
+    }
+
+    .price-card-featured {
+      background: #131313;
+      border-top: 2px solid var(--rose);
+    }
+
+    .price-card-featured:hover { background: #1a1a1a; }
+
     /* ── RESPONSIVE ──────────────────────────── */
     @media (max-width: 1000px) {
       .nav-inner { padding: 1.2rem 2rem; }
@@ -540,6 +606,7 @@
 
       .services-head { grid-template-columns: 1fr; gap: 1.5rem; }
       .services-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
 
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .gallery-item:first-child { grid-column: span 2; }
@@ -562,6 +629,7 @@
       .section-wrap { padding: 4rem 1.5rem; }
 
       .services-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
 
       .gallery-grid { grid-template-columns: 1fr; }
       .gallery-item:first-child { grid-column: span 1; }
@@ -573,7 +641,7 @@
       .process-step:nth-child(4) { border-right: none; }
       .process-step:last-child { border-bottom: none; }
 
-      .about-stats { flex-direction: column; gap: 1.5rem; }
+
       .btn-ghost { margin-left: 0; margin-top: 0.8rem; display: block; text-align: center; }
     }
   </style>
@@ -588,6 +656,7 @@
         <li><a href="#about">about</a></li>
         <li><a href="#services">services</a></li>
         <li><a href="#gallery">gallery</a></li>
+        <li><a href="#pricing">pricing</a></li>
         <li><a href="#booking">book</a></li>
       </ul>
     </div>
@@ -600,7 +669,7 @@
       <div class="hero-line"></div>
       <p class="hero-eyebrow">tattoo artistry · touch-ups · cover-ups</p>
       <h1 class="hero-title">Ink In<br /><em>Muse</em></h1>
-      <p class="hero-sub">Where old stories get rewritten and new ones find their skin.</p>
+      <p class="hero-sub">Art. Ink. Inspire. — Syracuse, NY</p>
       <a href="#booking" class="btn">book a consultation</a>
       <a href="#gallery" class="btn btn-ghost">view work</a>
     </div>
@@ -750,16 +819,121 @@
     </div>
   </div>
 
+  <!-- PRICING -->
+  <div id="pricing" class="section-wrap pricing-bg">
+    <div class="section-inner">
+      <p class="section-label">pricing</p>
+      <h2>Transparent <em>rates</em></h2>
+
+      <div class="deposit-banner" style="margin-top:2rem;">
+        <div class="deposit-dot"></div>
+        <span>A $20 deposit is required to secure your booking</span>
+      </div>
+
+      <div class="pricing-grid">
+
+        <div class="price-card">
+          <h3>Name Tattoos</h3>
+          <div class="price-row">
+            <span class="price-row-label">Small</span>
+            <span class="price-row-amount">$65</span>
+          </div>
+          <div class="price-row">
+            <span class="price-row-label">Medium</span>
+            <span class="price-row-amount">$75</span>
+          </div>
+          <div class="price-row">
+            <span class="price-row-label">Large</span>
+            <span class="price-row-amount">$80</span>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <h3>Back Tattoos</h3>
+          <div class="price-row">
+            <span class="price-row-label">Small portrait</span>
+            <span class="price-row-amount">$90</span>
+          </div>
+          <div class="price-row">
+            <span class="price-row-label">Medium</span>
+            <span class="price-row-amount">$180</span>
+          </div>
+          <div class="price-row">
+            <span class="price-row-label">Large</span>
+            <span class="price-row-amount">$220</span>
+          </div>
+          <p class="price-note">*depending on detail*</p>
+        </div>
+
+        <div class="price-card">
+          <h3>Arm Tattoos</h3>
+          <div class="price-row">
+            <span class="price-row-label">Quarter sleeve</span>
+            <span class="price-row-amount">$200</span>
+          </div>
+          <div class="price-row">
+            <span class="price-row-label">Half sleeve</span>
+            <span class="price-row-amount">$140</span>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <h3>Neck Tattoos</h3>
+          <div class="price-row">
+            <span class="price-row-label">Small</span>
+            <span class="price-row-amount">$70</span>
+          </div>
+          <div class="price-row">
+            <span class="price-row-label">Medium</span>
+            <span class="price-row-amount">$90</span>
+          </div>
+          <div class="price-row">
+            <span class="price-row-label">Large</span>
+            <span class="price-row-amount">$120</span>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <h3>Foot / Leg</h3>
+          <div class="price-row">
+            <span class="price-row-label">Foot</span>
+            <span class="price-row-amount">$85</span>
+          </div>
+          <div class="price-row">
+            <span class="price-row-label">Thigh</span>
+            <span class="price-row-amount">$100–$140</span>
+          </div>
+          <div class="price-row">
+            <span class="price-row-label">Calf</span>
+            <span class="price-row-amount">$130</span>
+          </div>
+        </div>
+
+        <div class="price-card price-card-featured">
+          <h3>Tap Outs</h3>
+          <div class="price-row">
+            <span class="price-row-label">Hourly rate</span>
+            <span class="price-row-amount">$100 / hr</span>
+          </div>
+          <p class="price-note">For larger pieces billed by the hour</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <!-- BOOKING CTA -->
   <div id="booking" class="booking-section">
     <div class="booking-bg"></div>
     <p class="section-label" style="position:relative;">ready when you are</p>
     <h2>Let's talk<br /><em>about your skin.</em></h2>
-    <p>Slots are limited. Reach out to start the conversation — consultations are free and there's no pressure.</p>
-    <div>
-      <a href="mailto:hello@inkinmuse.com" class="btn">send a message</a>
-      <a href="https://instagram.com" target="_blank" rel="noopener" class="btn btn-ghost">instagram</a>
+    <p>Slots are limited. A $20 deposit secures your booking. Reach out on Instagram or by phone to get started.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; position:relative;">
+      <a href="tel:6808950269" class="btn">📞 (680) 895-0269</a>
+      <a href="https://instagram.com/Armonie.Xlee" target="_blank" rel="noopener" class="btn btn-ghost">IG: @Armonie.Xlee</a>
+      <a href="https://facebook.com/Armoniexlee" target="_blank" rel="noopener" class="btn btn-ghost">FB: @Armoniexlee</a>
     </div>
+    <p style="position:relative; margin-top:2rem; font-size:0.82rem; color:rgba(232,223,208,0.3); letter-spacing:0.06em;">📍 2827 James St, Syracuse, NY</p>
   </div>
 
   <!-- FOOTER -->
@@ -770,9 +944,11 @@
         <li><a href="#about">about</a></li>
         <li><a href="#services">services</a></li>
         <li><a href="#gallery">gallery</a></li>
+        <li><a href="#pricing">pricing</a></li>
         <li><a href="#booking">book</a></li>
+        <li><a href="https://instagram.com/Armonie.Xlee" target="_blank" rel="noopener">@Armonie.Xlee</a></li>
       </ul>
-      <span class="footer-copy">© 2026 Ink In Muse</span>
+      <span class="footer-copy">© 2026 Ink In Muse · Syracuse, NY · Art. Ink. Inspire.</span>
     </div>
   </footer>
 
